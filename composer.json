@@ -1,0 +1,12 @@
+{
+    "name": "workapp/localhost",
+    "require": {
+        "bramus/router": "^1.1"
+    },
+    "authors": [
+        {
+            "name": "WorkApp WorkApp",
+            "email": "workapp@w.com"
+        }
+    ]
+}
