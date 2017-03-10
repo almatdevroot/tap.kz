@@ -17,6 +17,14 @@ class OrgController extends Controller{
         self::json($data);
     }
 
+    static function orgsCWT($id) {
+        header("Content-type:application/json");
+        header("Access-Control-Allow-Origin: *");
+        $orgs = new OrgsModel();
+        $data = $orgs->all("WHERE `townId` = '".$id."'");
+        self::json($data);
+    }
+
     static function orgsWTAWT($key, $id) {
         header("Content-type:application/json");
         header("Access-Control-Allow-Origin: *");
@@ -24,6 +32,15 @@ class OrgController extends Controller{
         $data = $orgs->all("WHERE `typeName` = '".$key."' AND `townId` = '".$id."'");
         self::json($data);
     }
+
+    static function show($id) {
+        header("Content-type:application/json");
+        header("Access-Control-Allow-Origin: *");
+        $orgs = new OrgsModel();
+        $data = $orgs->all("WHERE `typeName` = '".$key."' AND `townId` = '".$id."'");
+        self::json($data);
+    }
+
 }
 
 ?>
