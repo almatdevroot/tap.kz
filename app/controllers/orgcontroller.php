@@ -37,9 +37,11 @@ class OrgController extends Controller{
         header("Content-type:application/json");
         header("Access-Control-Allow-Origin: *");
         $orgs = new OrgsModel();
-        $data = $orgs->all("WHERE `typeName` = '".$key."' AND `townId` = '".$id."'");
+        $data = $orgs->findbyId($id);
         self::json($data);
     }
+
+    
 
 }
 

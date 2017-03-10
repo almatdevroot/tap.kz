@@ -8,8 +8,8 @@ class OrgsModel extends Model{
     function all($params = '') {
         return $this->findAll($params);
     }
-    function findId($id) {
-
+    function findbyId($id) {
+        return $this->findId($id);
     }
 }
 

@@ -17,8 +17,8 @@ class Model {
         return $data;
     }
 
-    protected function findId($id) {
-        $data = $this->db->pdo->query("SELECT * FROM `".$this->t_n."` WHERE `id` = ".$this->db->pdo->quote($id).";")->fetch(PDO::FETCH_ASSOC);
+    public function findId($id) {
+        $data = $this->db->pdo->query("SELECT * FROM `".$this->t_n."` WHERE `id` = '".$id."';")->fetch(PDO::FETCH_ASSOC);
         if(count($data) == 0) {
             $data['message'] = 'Error';
         }
