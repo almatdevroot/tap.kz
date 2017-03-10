@@ -10,6 +10,8 @@ require __DIR__ . '/app/models/orgsModel.php';
 
 require __DIR__ . '/app/core/controller.php';
 
+require __DIR__ . '/app/utils/utilCoordinate.php';
+
 require __DIR__ . '/app/controllers/orgcontroller.php';
 
 $router = new \Bramus\Router\Router();
