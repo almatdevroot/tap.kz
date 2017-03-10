@@ -2,15 +2,27 @@
 
 class Model {
     protected function findAll($params) {
-        return $this->db->pdo->query("SELECT * FROM `".$this->t_n."` ".$params.";")->fetchall(PDO::FETCH_ASSOC);
+        $data = $this->db->pdo->query("SELECT * FROM `".$this->t_n."` ".$params.";")->fetchall(PDO::FETCH_ASSOC);
+        if(count($data) == 0) {
+            $data['message'] = 'Error';
+        }
+        return $data;
     }
 
     protected function find($params) {
-        return $this->db->pdo->query("SELECT * FROM `".$this->t_n."` ".$params.";")->fetch(PDO::FETCH_ASSOC);
+        $data = $this->db->pdo->query("SELECT * FROM `".$this->t_n."` ".$params.";")->fetch(PDO::FETCH_ASSOC);
+        if(count($data) == 0) {
+            $data['message'] = 'Error';
+        }
+        return $data;
     }
 
     protected function findId($id) {
-        return $this->db->pdo->query("SELECT * FROM `".$this->t_n."` WHERE `id` = ".$this->db->pdo->quote($id).";")->fetch(PDO::FETCH_ASSOC);
+        $data = $this->db->pdo->query("SELECT * FROM `".$this->t_n."` WHERE `id` = ".$this->db->pdo->quote($id).";")->fetch(PDO::FETCH_ASSOC);
+        if(count($data) == 0) {
+            $data['message'] = 'Error';
+        }
+        return $data;
     }
 
     protected function create($params) {

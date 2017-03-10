@@ -1,10 +1,10 @@
 <?
 
-$router->get('/organizations', allOrgs);
+$router->get('/organizations', 'OrgController::index');
 
-$router->get('/organizations/(\w+)', orgsWT);
+$router->get('/organizations/(\w+)', 'OrgController::orgsWT');
 
-$router->get('/organizations/(\w+)/(\d+)', orgsWTAWT);
+$router->get('/organizations/(\w+)/(\d+)', 'OrgController::orgsWTAWT');
 
 $router->run();
 

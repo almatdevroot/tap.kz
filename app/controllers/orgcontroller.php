@@ -1,30 +1,29 @@
 <?
 
-function allOrgs() {
-    header("Content-type:application/json");
-    header("Access-Control-Allow-Origin: *");
-    $orgs = new OrgsModel();
-    $json = json_encode($orgs->all());
-    DB::close();
-    echo $json;
-}
+class OrgController extends Controller{
+    static function index() {
+        header("Content-type:application/json");
+        header("Access-Control-Allow-Origin: *");
+        $orgs = new OrgsModel();
+        $data = $orgs->all();
+        self::json($data);
+    }
 
-function orgsWT($key) {
-    header("Content-type:application/json");
-    header("Access-Control-Allow-Origin: *");
-    $orgs = new OrgsModel();
-    $json = json_encode($orgs->all("WHERE `typeName` = '".$key."'"));
-    DB::close();
-    echo $json;
-}
+    static function orgsWT($key) {
+        header("Content-type:application/json");
+        header("Access-Control-Allow-Origin: *");
+        $orgs = new OrgsModel();
+        $data = $orgs->all("WHERE `typeName` = '".$key."'");
+        self::json($data);
+    }
 
-function orgsWTAWT($key, $id) {
-    header("Content-type:application/json");
-    header("Access-Control-Allow-Origin: *");
-    $orgs = new OrgsModel();
-    $json = json_encode($orgs->all("WHERE `typeName` = '".$key."' AND `townId` = '".$id."'"));
-    DB::close();
-    echo $json;
+    static function orgsWTAWT($key, $id) {
+        header("Content-type:application/json");
+        header("Access-Control-Allow-Origin: *");
+        $orgs = new OrgsModel();
+        $data = $orgs->all("WHERE `typeName` = '".$key."' AND `townId` = '".$id."'");
+        self::json($data);
+    }
 }
 
 ?>
