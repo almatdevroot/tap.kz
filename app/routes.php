@@ -12,6 +12,25 @@ $router->get('/organizations/(\w+)/(\d+)/nearest/(\d+)/(\d+)', 'OrgController::o
 
 $router->get('/organization/(\d+)', 'OrgController::show');
 
+$router->post('/auth', function () {
+    header("Content-type:application/json");
+    header("Access-Control-Allow-Origin: *");
+    $user = new User();
+    echo json_encode($user->auth($_POST['number']));
+});
+
+$router->get('/user', function () {
+    header("Content-type:application/json");
+    header("Access-Control-Allow-Origin: *");
+    $token = $_SERVER[];
+    $user = new User();
+    $user->check($token, function () {
+        echo 'Logined';
+    }, function () {
+        echo 'Access Denied';
+    });
+});
+
 #$router->get('/test', 'OrgController::test');
 
 $router->run();
