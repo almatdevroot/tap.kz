@@ -11,6 +11,9 @@ class OrgsModel extends Model{
     function findbyId($id) {
         return $this->findId($id);
     }
+    function insert($params) {
+        $this->create($params);
+    }
 }
 
 ?>

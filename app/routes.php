@@ -12,6 +12,8 @@ $router->get('/organizations/(\w+)/(\d+)/nearest/(\d+)/(\d+)', 'OrgController::o
 
 $router->get('/organization/(\d+)', 'OrgController::show');
 
+#$router->get('/test', 'OrgController::test');
+
 $router->run();
 
 ?>

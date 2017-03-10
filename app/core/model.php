@@ -26,7 +26,23 @@ class Model {
     }
 
     protected function create($params) {
-
+        $names = $params['names'];
+        $values = $params['values'];
+        $sql = "INSERT INTO `".$this->t_n."` (";
+        foreach ($names as $name) {
+            $sql = $sql.$name.", ";
+        }
+        $sql = substr($sql, 0, -2);
+        $sql = $sql.") VALUES (";
+        foreach($values as $value) {
+            $sql = $sql.$this->db->pdo->quote($value).", ";
+        }
+        $sql = substr($sql, 0, -2);
+        $sql = $sql.")";
+        $this->db->pdo->beginTransaction();
+        $this->db->pdo->exec($sql);
+        $this->db->pdo->commit();
+        echo $sql;
     }
 
     protected function update($params) {

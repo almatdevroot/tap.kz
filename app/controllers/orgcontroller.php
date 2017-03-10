@@ -55,6 +55,18 @@ class OrgController extends Controller{
         self::json($data);
     }
 
+    static function test() {
+        $o = new OrgsModel();
+        $o->insert(array(
+            'names' => array(
+                'name', 'description', 'address', 'typeId', 'typeName', 'rating', 'townId', 'townName', 'coordinateX', 'coordinateY'
+            ),
+            'values' => array(
+                'TOO "TOO Name"', 'lorem too ipsum dolor emit ogjap fpajfa', 'Streett 23', 1, 'hotel', 5, 1, 'qaraghandy', 4, 4 
+            )
+        ));
+    }
+
 }
 
 ?>
