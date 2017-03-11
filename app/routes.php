@@ -25,16 +25,37 @@ $router->get('/user', function () {
     $headers = getallheaders();
     $token = $headers['Authorization'];
     $user = new User();
-    /*$user->check($token, function ($data) {
-        echo 'Logined';
-        print_r($data);
-    }, function () {
-        echo 'Access Denied';
-    });*/
-
     $user->check($token,
         function ($data) {
             echo json_encode($data);
+        },
+        function () {
+            echo json_encode(array('message' => 'Error'));
+        });
+});
+
+$router->post('/addreview', function () {
+    header("Content-type:application/json");
+    header("Access-Control-Allow-Origin: *");
+    $headers = getallheaders();
+    $token = $headers['Authorization'];
+    $user = new User();
+    $user->check($token,
+        function ($data) {
+            if($data['id'] == $_POST['userId']) {
+                $rw = new Review();
+                $a = array(
+                    'names' => array(
+                        'name', 'userId', 'text', 'ratingLvl', 'date', 'companyId'
+                    ),
+                    'values' => array(
+                        addslashes($_POST['name']), $_POST['userId'], 
+                            addslashes($_POST['text']), $_POST['ratingLvl'], 
+                                                    addslashes($_POST['date']), $_POST['companyId']
+                    )
+                );
+                echo json_encode($rw->addReview($a));
+            }
         },
         function () {
             echo json_encode(array('message' => 'Error'));

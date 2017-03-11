@@ -12,6 +12,8 @@ require __DIR__ . '/app/models/orgsModel.php';
 
 require __DIR__ . '/app/models/userModel.php';
 
+require __DIR__ . '/app/models/reviewModel.php';
+
 require __DIR__ . '/app/core/controller.php';
 
 require __DIR__ . '/app/utils/utilCoordinate.php';

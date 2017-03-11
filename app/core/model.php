@@ -43,7 +43,6 @@ class Model {
         $this->db->pdo->beginTransaction();
         $this->db->pdo->exec($sql);
         $this->db->pdo->commit();
-        echo $sql;
     }
 
     protected function update($params) {

@@ -9,7 +9,7 @@ class User extends Model {
 
     function auth($number) {
         $data = $this->find("WHERE `number` = '".$number."'");
-        if($data == null) {
+        if(isset($data['message']) && $data['message'] == 'Empty') {
             $data = array();
             $data['message'] = ':(';
             return $data;
