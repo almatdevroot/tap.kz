@@ -12,55 +12,11 @@ $router->get('/organizations/(\w+)/(\d+)/nearest/(\d+)/(\d+)', 'OrgController::o
 
 $router->get('/organization/(\d+)', 'OrgController::show');
 
-$router->post('/auth', function () {
-    header("Content-type:application/json");
-    header("Access-Control-Allow-Origin: *");
-    $user = new User();
-    echo json_encode($user->auth($_POST['number']));
-});
+$router->post('/auth', 'UserController::auth');
 
-$router->get('/user', function () {
-    header("Content-type:application/json");
-    header("Access-Control-Allow-Origin: *");
-    $headers = getallheaders();
-    $token = $headers['Authorization'];
-    $user = new User();
-    $user->check($token,
-        function ($data) {
-            echo json_encode($data);
-        },
-        function () {
-            echo json_encode(array('message' => 'Error'));
-        });
-});
+$router->get('/user', 'UserController::user');
 
-$router->post('/addreview', function () {
-    header("Content-type:application/json");
-    header("Access-Control-Allow-Origin: *");
-    $headers = getallheaders();
-    $token = $headers['Authorization'];
-    $user = new User();
-    $user->check($token,
-        function ($data) {
-            if($data['id'] == $_POST['userId']) {
-                $rw = new Review();
-                $a = array(
-                    'names' => array(
-                        'name', 'userId', 'text', 'ratingLvl', 'date', 'companyId'
-                    ),
-                    'values' => array(
-                        addslashes($_POST['name']), $_POST['userId'], 
-                            addslashes($_POST['text']), $_POST['ratingLvl'], 
-                                                    addslashes($_POST['date']), $_POST['companyId']
-                    )
-                );
-                echo json_encode($rw->addReview($a));
-            }
-        },
-        function () {
-            echo json_encode(array('message' => 'Error'));
-        });
-});
+$router->post('/addreview', 'ReviewController::addReview');
 
 #$router->get('/test', 'OrgController::test');
 
