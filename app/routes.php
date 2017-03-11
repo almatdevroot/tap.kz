@@ -18,6 +18,8 @@ $router->get('/user', 'UserController::user');
 
 $router->post('/addreview', 'ReviewController::addReview');
 
+$router->delete('/deleteReview', 'ReviewController::delMyR');
+
 #$router->get('/test', 'OrgController::test');
 
 $router->run();

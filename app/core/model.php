@@ -50,7 +50,9 @@ class Model {
     }
 
     protected function delete($id) {
-
+        $sql = "DELETE FROM `".$this->t_n."` WHERE `id` = '".$id."';";
+        echo $sql;
+        $this->db->pdo->exec($sql);
     }
 }
 

@@ -11,9 +11,26 @@ class Review extends Model {
         return $this->findAll("WHERE `companyId` = '".$id."';");
     }
 
+    function getUserReviews($id) {
+        return $this->findAll("WHERE `userId` = '".$id."';");
+    }
+
+    function delMyReview($id) {
+        try{
+            $this->delete($id);
+            return array('message' => 'OK');
+        }catch(Exception $e) {
+            return array('message' => ':(');
+        }
+    }
+
     function addReview($params) {
-        $this->create($params);
-        return array('message' => 'OK');
+        try{
+            $this->create($params);
+            return array('message' => 'OK');
+        }catch(Exception $e) {
+            return array('message' => ':(');
+        }
     }
 
 }
