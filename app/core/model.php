@@ -11,7 +11,8 @@ class Model {
 
     protected function find($params) {
         $data = $this->db->pdo->query("SELECT * FROM `".$this->t_n."` ".$params.";")->fetch(PDO::FETCH_ASSOC);
-        if(count($data) == 0) {
+        if($data == null) {
+            $data = array();
             $data['message'] = 'Empty';
         }
         return $data;

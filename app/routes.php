@@ -22,13 +22,15 @@ $router->post('/auth', function () {
 $router->get('/user', function () {
     header("Content-type:application/json");
     header("Access-Control-Allow-Origin: *");
-    $token = $_SERVER[];
+    $headers = getallheaders();
+    $token = $headers['Authorization'];
     $user = new User();
-    $user->check($token, function () {
+    /*$user->check($token, function ($data) {
         echo 'Logined';
+        print_r($data);
     }, function () {
         echo 'Access Denied';
-    });
+    });*/
 });
 
 #$router->get('/test', 'OrgController::test');
