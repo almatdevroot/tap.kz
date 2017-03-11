@@ -25,7 +25,7 @@ class User extends Model {
             $data = JWT::decode($token, 'f5s6df5s6df5s');
             $q = $this->find("WHERE `number` = '".$data->number."'");
             if($data->number == $q['number'] && $q != null) {
-                $func($data);
+                $func($q);
             }
         }catch(Exception $e){
             $func_onError();

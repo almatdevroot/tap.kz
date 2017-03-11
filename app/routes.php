@@ -31,6 +31,14 @@ $router->get('/user', function () {
     }, function () {
         echo 'Access Denied';
     });*/
+
+    $user->check($token,
+        function ($data) {
+            echo json_encode($data);
+        },
+        function () {
+            echo json_encode(array('message' => 'Error'));
+        });
 });
 
 #$router->get('/test', 'OrgController::test');
